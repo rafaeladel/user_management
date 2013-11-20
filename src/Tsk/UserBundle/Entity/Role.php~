@@ -1,0 +1,70 @@
+<?php
+namespace TSK\UserBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\Role\RoleInterface;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraint as Assert;
+
+/**
+ * @ORM\Entity(repositoryClass="TSK\UserBundle\Repository\RoleRepository")
+ * @ORM\Table(name="roles")
+ */
+class Role implements RoleInterface
+{
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="string", length=50, unique=true)
+     */
+    protected $role;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="roles")
+     */
+    protected $users;
+
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setRole($role)
+    {
+        $this->role = $role;
+    
+        return $this;
+    }
+
+    public function addUser(\TSK\UserBundle\Entity\User $users)
+    {
+        $this->users[] = $users;
+    
+        return $this;
+    }
+
+    public function removeUser(\TSK\UserBundle\Entity\User $users)
+    {
+        $this->users->removeElement($users);
+    }
+
+    public function getUsers()
+    {
+        return $this->users;
+    }
+}

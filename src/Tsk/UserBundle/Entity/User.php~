@@ -1,0 +1,216 @@
+<?php
+
+namespace TSK\UserBundle\Entity;
+
+use Symfony\Component\Security\Core\Role\Role;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ORM\Entity(repositoryClass="TSK\UserBundle\Repository\UserRepository")
+ * @ORM\Table(name="users")
+ * @Assert\GroupSequence({"Form", "User"})
+ */
+class User implements AdvancedUserInterface, \Serializable
+{
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="string", length=25, unique=true)
+     * @Assert\NotBlank(groups={"Form"})
+     */
+    protected $username;
+
+    /**
+     * @ORM\Column(type="string", length=128)
+     * @Assert\NotBlank(groups={"Form"})
+     */
+    protected $password;
+
+    /**
+     * @ORM\Column(type="string", length=50, unique=true)
+     * @Assert\Email;
+     */
+    protected $email;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $is_active;
+
+    /**
+     * @ORM\Column(type="string", length=59)
+     */
+    protected $firstname;
+
+    /**
+     * @ORM\Column(type="string", length=59)
+     */
+    protected $lastname;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Role", inversedBy="users", cascade={"persist"})
+     */
+    protected $roles;
+
+    protected $salt;
+
+    public function isAccountNonExpired()
+    {
+        return true;
+    }
+
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    public function isEnabled()
+    {
+        return $this->getIsActive();
+    }
+
+    public function getRoles()
+    {
+        return $this->roles;
+    }
+
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    public function getSalt()
+    {
+        return $this->salt;
+    }
+
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * Removes sensitive data from the user.
+     *
+     * This is important if, at any given point, sensitive information like
+     * the plain-text password is stored on this object.
+     */
+    public function eraseCredentials()
+    {
+
+    }
+
+    public function serialize()
+    {
+        return serialize(array($this->getUsername()));
+    }
+
+    public function unserialize($serialized)
+    {
+        list($this->username) = unserialize($serialized);
+    }
+
+
+    public function __construct()
+    {
+        $this->roles = new ArrayCollection();
+    }
+    
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    
+        return $this;
+    }
+
+    /**
+     * Converting input password to a hashed one
+     * @param $password
+     * @return $this
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    
+        return $this;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    
+        return $this;
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function setIsActive($isActive)
+    {
+        $this->is_active = $isActive;
+    
+        return $this;
+    }
+
+    public function getIsActive()
+    {
+        return $this->is_active;
+    }
+
+    public function setFirstname($firstname)
+    {
+        $this->firstname = $firstname;
+    
+        return $this;
+    }
+
+    public function getFirstname()
+    {
+        return $this->firstname;
+    }
+
+    public function setLastname($lastname)
+    {
+        $this->lastname = $lastname;
+    
+        return $this;
+    }
+
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
+
+    public function addRole(\TSK\UserBundle\Entity\Role $roles)
+    {
+        $this->roles[] = $roles;
+    
+        return $this;
+    }
+
+    public function removeRole(\TSK\UserBundle\Entity\Role $roles)
+    {
+        $this->roles->removeElement($roles);
+    }
+}

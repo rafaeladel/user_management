@@ -1,0 +1,34 @@
+security:
+     role_hierarchy:
+         ROLE_ADMIN: ROLE_USER
+         
+     firewalls:
+         dev:
+             pattern:  ^/(_(profiler|wdt)|css|images|js)/
+             security: false
+         public:
+             pattern:  ^/
+             anonymous: ~
+             form_login:
+                 login_path: /login
+                 check_path: /login_check
+                 success_handler: tsk_authentication_success_handler
+             logout:
+                 path: /logout
+                 target: /
+             remember_me:
+                 key: "%secret%"
+                 lifetime: 2592000 #1 month
+                 path: /
+                 domain: ~ #defaults to $_SERVER
+
+     access_control:
+         - { path: ^/user, roles: ROLE_USER }
+         - { path: ^/admin, roles: ROLE_ADMIN }
+
+     providers:
+         default_provider:
+             entity: { class: Tsk\UserBundle\Entity\User }
+
+     encoders:
+         Tsk\UserBundle\Entity\User: sha512

@@ -1,0 +1,12 @@
+<p>Hello, {{ app.user.username }}</p>
+<hr>
+<p><b>Username</b>: {{ app.user.username }}</p>
+<p><b>Email</b>: {{ app.user.email }}</p>
+<p><b>First name</b>: {{ app.user.firstname }}</p>
+<p><b>Last name</b>: {{ app.user.lastname }}</p>
+<hr>
+<p><a href="{{ path("tsk_user_get_edit", {"username":app.user.username}) }}">Edit</a> </p>
+{% if app.security.granted("ROLE_ADMIN") %}
+    <a href="{{ path("tsk_users_list", {"username": app.user.username}) }}">List Users</a>
+{% endif %}
+<p><a href="{{ path("tsk_user_logout") }}">Logout</a> </p>

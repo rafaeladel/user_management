@@ -1,0 +1,20 @@
+parameters:
+    tsk_authentication_success_handler.class: Tsk\UserBundle\Utils\AuthenticationSuccessHandler
+    tsk_encoder_subscriber.class: Tsk\UserBundle\EventSubscriber\EncoderSubscriber
+    tsk_encoder.class: Tsk\UserBundle\Utils\Encoder
+
+services:
+    tsk_authentication_success_handler:
+        class: %tsk_authentication_success_handler.class%
+        arguments:
+            router: "@router"
+
+    tsk_encoder_subscriber:
+        class: %tsk_encoder_subscriber.class%
+        tags:
+            - { name: doctrine.event_subscriber }
+        arguments: [@tsk_encoder]
+
+    tsk_encoder:
+        class: %tsk_encoder.class%
+        arguments: [@security.encoder_factory]

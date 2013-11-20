@@ -1,0 +1,4 @@
+tsk_user:
+    resource: "@TskUserBundle/Resources/config/routing.yml"
+    prefix:   /
+

@@ -1,0 +1,18 @@
+<p>Login</p>
+
+{% if error %}
+    <p>{{ error.message|trans }}</p>
+{% endif %}
+
+<form action="{{ path("tsk_user_post_login") }}" method="post">
+    <label for="username">Username/Email</label>
+    <input type="text" name="_username" id="username" value="{{ last_username }}" required="required" />
+    <br>
+    <label for="password">Password</label>
+    <input type="password" name="_password" id="password" required="required" />
+    <br>
+    <label for="remember_me">Remember Me</label>
+    <input type="checkbox" id="remember_me" name="_remember_me"/>
+    <br>
+    <input type="submit" value="Login"/>
+</form>

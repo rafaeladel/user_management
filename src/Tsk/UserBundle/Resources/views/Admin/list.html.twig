@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+<table border="1">
+    <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    {% for row in bag %}
+        <tr>
+            <td>{{ row.user_data.username }}</td>
+            <td>{{ row.user_data.email }}</td>
+            <td>{{ row.user_data.firstname }}</td>
+            <td>{{ row.user_data.lastname }}</td>
+            <td style="color:{% if row.user_data.isActive %}blue{% else %}red{% endif %};">
+                {{ row.user_data.isActive ? "Yes" : "No" }}
+                {{ form_start(row.activate_form, {"action":path("tsk_user_change_state", {"username":app.user.username, "target": row.user_data.username}), "method":"post"}) }}
+                {{ form_widget(
+                row.activate_form.activate,
+                {
+                "label": row.user_data.isActive ? "Deactivate" : "Activate",
+                "disabled": "ROLE_ADMIN" in row.user_roles ? "disabled" : ""
+                }
+                ) }}
+                {{ form_end(row.activate_form) }}
+            </td>
+            <td>
+                {{ form_start(row.delete_form, {"action": path("tsk_user_delete", {"username": app.user.username,"target": row.user_data.username})})     }}
+                {{ form_widget(
+                row.delete_form.delete,
+                {
+                "disabled": "ROLE_ADMIN" in row.user_roles ? "disabled" : ""
+                }
+                ) }}
+                {{ form_end(row.delete_form) }}
+            </td>
+            <td>
+                {{ form_start(row.make_admin_form, {"action": path("tsk_user_make_admin", {"username": app.user.username,"target": row.user_data.username})})     }}
+                {{ form_widget(
+                row.make_admin_form.make_admin,
+                {
+                "disabled": "ROLE_ADMIN" in row.user_roles ? "disabled" : ""
+                }
+                ) }}
+                {{ form_end(row.make_admin_form) }}
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+<a href="{{ path("tsk_user_profile", {"username": app.user.username}) }}">Back</a>
+</body>
+</html>

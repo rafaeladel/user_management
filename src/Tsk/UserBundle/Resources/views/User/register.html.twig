@@ -1,0 +1,8 @@
+<p>Register</p>
+
+{% if error_msg %}
+    <p>{{ error_msg }}</p>
+{% endif %}
+
+{{ form(form, {'action': path('tsk_user_post_register'), 'method': 'post' } )  }}
+<a href="{{ path("tsk_user_homepage") }}">Back</a>

@@ -1,0 +1,85 @@
+tsk_user_homepage:
+    pattern:  /
+    defaults: { _controller: TskUserBundle:Blog:index }
+    methods:  [GET]
+
+tsk_user_profile:
+    pattern:  /user/{username}
+    defaults: { _controller: TskUserBundle:User:profile }
+    methods:  [GET]
+    requirements:
+        username: \w+
+
+tsk_user_get_login:
+    pattern:  /login
+    defaults: { _controller: TskUserBundle:User:getLogin }
+    methods:  [GET]
+
+tsk_user_post_login:
+    pattern:  /login_check
+    methods:  [POST]
+
+tsk_user_get_register:
+    pattern:  /register
+    defaults: { _controller: TskUserBundle:User:getRegister }
+    methods:  [GET]
+
+tsk_user_post_register:
+    pattern:  /register
+    defaults: { _controller: TskUserBundle:User:postRegister }
+    methods:  [POST]
+
+tsk_user_logout:
+    pattern:  /logout
+
+tsk_user_get_edit:
+    pattern:  /user/{username}/edit
+    defaults: { _controller: TskUserBundle:User:getEdit }
+    methods:  [GET]
+    requirements:
+        username: \w+
+
+tsk_user_post_edit:
+    pattern:  /user/{username}/edit
+    defaults: { _controller: TskUserBundle:User:postEdit }
+    methods:  [POST]
+    requirements:
+        username: \w+
+
+tsk_user_get_change_password:
+    pattern:  /user/{username}/edit/password
+    defaults: { _controller: TskUserBundle:User:getChangePassword }
+    methods:  [GET]
+    requirements:
+        username: \w+
+
+tsk_user_post_change_password:
+    pattern:  /user/{username}/edit/password
+    defaults: { _controller: TskUserBundle:User:postChangePassword }
+    methods:  [POST]
+    requirements:
+        username: \w+
+
+tsk_users_list:
+   pattern:  /admin/{username}/users/list
+   defaults: { _controller: TskUserBundle:Admin:listUsers }
+   methods:  [GET]
+   requirements:
+       username: \w+
+
+tsk_user_make_admin:
+   pattern:  /admin/{username}/user/{target}/make_admin
+   defaults: { _controller: TskUserBundle:Admin:makeUserAdmin }
+   methods: [POST]
+
+tsk_user_delete:
+   pattern:  /admin/{username}/user/{target}/delete
+   defaults: { _controller: TskUserBundle:Admin:deleteUser }
+   methods:  [POST]
+
+tsk_user_change_state:
+    pattern:  /user/{username}/change_state/{target}
+    defaults: { _controller: TskUserBundle:Admin:changeState}
+    methods: [POST]
+    requirements:
+        username: \w+

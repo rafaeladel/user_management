@@ -1,0 +1,6 @@
+<p>Edit your information:</p>
+<hr>
+{{ form(form, {"action" : path("tsk_user_post_edit", {"username": app.user.username}), "method":"post"}) }}
+<a href="{{ path("tsk_user_get_change_password", {"username": app.user.username}) }}">Change password</a>
+<br>
+<a href="{{ path("tsk_user_profile", {"username": app.user.username}) }}">Back</a>
