@@ -11,7 +11,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="Tsk\UserBundle\Repository\UserRepository")
  * @ORM\Table(name="users")
  * @ORM\HasLifecycleCallbacks
- * @ORM\ChangeTrackingPolicy("NOTIFY")
  * @Assert\GroupSequence({"FormCreate", "FormEdit", "User"})
  */
 class User implements AdvancedUserInterface, \Serializable
