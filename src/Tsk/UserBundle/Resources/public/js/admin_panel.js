@@ -4,7 +4,7 @@ $(document).ready(function(){
         var form = $("#" + form_id);
         var url = form.attr("action");
         form.children("button").attr("disabled","disabled");
-        if(form_id == "activate_form")
+        if(data.actionName == "change_state")
         {
             form.siblings("span").text("loading..").css("color","black");
         }
