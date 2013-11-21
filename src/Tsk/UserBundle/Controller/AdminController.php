@@ -3,6 +3,7 @@ namespace Tsk\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Tsk\UserBundle\Entity\Role;
 
 class AdminController extends Controller
@@ -41,18 +42,28 @@ class AdminController extends Controller
         $user->setIsActive(!$user->getIsActive());
         $em->persist($user);
         $em->flush();
+        if($request->isXmlHttpRequest())
+        {
+            $response = array("code" => 200, "userState" => $user->getIsActive() ? "Yes": "No");
+            return new Response(json_encode($response), 200, array('Content-Type' => 'application/json'));
+        }
         return $this->redirect($this->generateUrl("tsk_users_list", array("username" => $username)));
     }
 
-    public function deleteUserAction($username, $target)
+    public function deleteUserAction(Request $request, $username, $target)
     {
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository("TskUserBundle:User")->findOneByUsername($target);
         $em->remove($user);
         $em->flush();
+        if($request->isXmlHttpRequest())
+        {
+            $response = array("code" => 200);
+            return new Response(json_encode($response), 200, array('Content-Type' => 'application/json'));
+        }
         return $this->redirect($this->generateUrl("tsk_users_list", array("username" => $username)));
     }
-    public function makeUserAdminAction($username, $target)
+    public function makeUserAdminAction(Request $request, $username, $target)
     {
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository("TskUserBundle:User")->findOneByUsername($target);
@@ -65,6 +76,11 @@ class AdminController extends Controller
         $user->addRole($admin_role);
         $em->persist($user);
         $em->flush();
+        if($request->isXmlHttpRequest())
+        {
+            $response = array("code" => 200);
+            return new Response(json_encode($response), 200, array('Content-Type' => 'application/json'));
+        }
         return $this->redirect($this->generateUrl("tsk_users_list", array("username" => $username)));
     }
 

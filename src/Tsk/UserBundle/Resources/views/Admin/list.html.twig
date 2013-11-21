@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
-<head></head>
+<head>
+    {% javascripts "@TskUserBundle/Resources/public/js/jquery-2.0.3.min.js"
+                    "@TskUserBundle/Resources/public/js/*" %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+</head>
 <body>
 <table border="1">
     <tr>
@@ -19,8 +24,8 @@
             <td>{{ row.user_data.firstname }}</td>
             <td>{{ row.user_data.lastname }}</td>
             <td style="color:{% if row.user_data.isActive %}blue{% else %}red{% endif %};">
-                {{ row.user_data.isActive ? "Yes" : "No" }}
-                {{ form_start(row.activate_form, {"action":path("tsk_user_change_state", {"username":app.user.username, "target": row.user_data.username}), "method":"post"}) }}
+                <span>{{ row.user_data.isActive ? "Yes" : "No" }}</span>
+                {{ form_start(row.activate_form, {"action":path("tsk_user_change_state", {"username":app.user.username, "target": row.user_data.username}), "method":"post", 'attr':{"id":"activate_form"} } ) }}
                 {{ form_widget(
                 row.activate_form.activate,
                 {
@@ -31,17 +36,17 @@
                 {{ form_end(row.activate_form) }}
             </td>
             <td>
-                {{ form_start(row.delete_form, {"action": path("tsk_user_delete", {"username": app.user.username,"target": row.user_data.username})})     }}
+                {{ form_start(row.delete_form, {"action": path("tsk_user_delete", {"username": app.user.username,"target": row.user_data.username}), "method":"post", 'attr':{"id":"delete_form"}})     }}
                 {{ form_widget(
-                row.delete_form.delete,
-                {
-                "disabled": "ROLE_ADMIN" in row.user_roles ? "disabled" : ""
-                }
+                    row.delete_form.delete,
+                    {
+                    "disabled": "ROLE_ADMIN" in row.user_roles ? "disabled" : ""
+                    }
                 ) }}
                 {{ form_end(row.delete_form) }}
             </td>
             <td>
-                {{ form_start(row.make_admin_form, {"action": path("tsk_user_make_admin", {"username": app.user.username,"target": row.user_data.username})})     }}
+                {{ form_start(row.make_admin_form, {"action": path("tsk_user_make_admin", {"username": app.user.username,"target": row.user_data.username}), "method":"post", 'attr':{"id":"make_admin_form"}})     }}
                 {{ form_widget(
                 row.make_admin_form.make_admin,
                 {
