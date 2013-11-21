@@ -1,25 +1,25 @@
 $(document).ready(function(){
-    $(".activate_form, .make_admin_form, .delete_form").submit(function($event){
-        var form_class = $event.target.id;
-        var form = $("." + form_class);
+    $("td form").submit(function($event){
+        var form_id = $event.target.id;
+        var form = $("#" + form_id);
         var url = form.attr("action");
         form.children("button").attr("disabled","disabled");
-        if(form_class == "activate_form")
+        if(form_id == "activate_form")
         {
             form.siblings("span").text("loading..").css("color","black");
         }
         $.post(url, {}, function(data){
             if(data.code == 200)
             {
-                if(form_class == "activate_form")
+                if(data.actionName == "change_state")
                 {
                     processActivateForm(form, data);
                 }
-                else if(form_class == "make_admin_form")
+                else if(data.actionName == "make_admin")
                 {
                     form.parentsUntil("tbody", "tr").find("button").attr("disabled","disabled");
                 }
-                else if(form_class =="delete_form")
+                else if(data.actionName == "delete")
                 {
                     form.parentsUntil("tbody", "tr").remove();
                 }

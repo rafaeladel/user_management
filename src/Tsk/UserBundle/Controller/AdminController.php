@@ -44,7 +44,7 @@ class AdminController extends Controller
         $em->flush();
         if($request->isXmlHttpRequest())
         {
-            $response = array("code" => 200, "userState" => $user->getIsActive() ? "Yes": "No");
+            $response = array("code" => 200, "userState" => $user->getIsActive() ? "Yes": "No", "actionName" => "change_state");
             return new Response(json_encode($response), 200, array('Content-Type' => 'application/json'));
         }
         return $this->redirect($this->generateUrl("tsk_users_list", array("username" => $username)));
@@ -58,7 +58,7 @@ class AdminController extends Controller
         $em->flush();
         if($request->isXmlHttpRequest())
         {
-            $response = array("code" => 200);
+            $response = array("code" => 200, "actionName" => "delete");
             return new Response(json_encode($response), 200, array('Content-Type' => 'application/json'));
         }
         return $this->redirect($this->generateUrl("tsk_users_list", array("username" => $username)));
@@ -78,7 +78,7 @@ class AdminController extends Controller
         $em->flush();
         if($request->isXmlHttpRequest())
         {
-            $response = array("code" => 200);
+            $response = array("code" => 200, "actionName" => "make_admin");
             return new Response(json_encode($response), 200, array('Content-Type' => 'application/json'));
         }
         return $this->redirect($this->generateUrl("tsk_users_list", array("username" => $username)));
