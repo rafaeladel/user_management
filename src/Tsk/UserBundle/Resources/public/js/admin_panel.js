@@ -4,10 +4,7 @@ $(document).ready(function(){
         var form = $("#" + form_id);
         var url = form.attr("action");
         form.children("button").attr("disabled","disabled");
-        if(data.actionName == "change_state")
-        {
-            form.siblings("span").text("loading..").css("color","black");
-        }
+        form.siblings("span").text("loading..").css("color","black");
         $.post(url, {}, function(data){
             if(data.code == 200)
             {
@@ -18,10 +15,12 @@ $(document).ready(function(){
                 else if(data.actionName == "make_admin")
                 {
                     form.parentsUntil("tbody", "tr").find("button").attr("disabled","disabled");
+                    form.siblings("span").empty();
                 }
                 else if(data.actionName == "delete")
                 {
                     form.parentsUntil("tbody", "tr").remove();
+                    form.siblings("span").empty();
                 }
             }
         });
