@@ -26,7 +26,7 @@
       <file leaf-file-name="list.html.twig" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Tsk/UserBundle/Resources/views/Admin/list.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="44" selection-start="212" selection-end="212" vertical-scroll-proportion="-3.4615386" vertical-offset="0" max-vertical-offset="1296">
+            <state line="48" column="188" selection-start="2164" selection-end="2164" vertical-scroll-proportion="-6.230769" vertical-offset="702" max-vertical-offset="1296">
               <folding>
                 <element signature="n#style#0;n#td#4;n#tr#1;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -43,10 +43,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Role.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Role.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Tsk/UserBundle/Entity/Role.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-1.1781818" vertical-offset="648" max-vertical-offset="1296">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="24.923077" vertical-offset="648" max-vertical-offset="1296">
               <folding />
             </state>
           </provider>
@@ -61,10 +61,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="admin_panel.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="admin_panel.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Tsk/UserBundle/Resources/public/js/admin_panel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="24" selection-start="597" selection-end="597" vertical-scroll-proportion="0.0" vertical-offset="72" max-vertical-offset="918">
+            <state line="20" column="17" selection-start="845" selection-end="845" vertical-scroll-proportion="0.0625" vertical-offset="324" max-vertical-offset="918">
               <folding />
             </state>
           </provider>
@@ -113,9 +113,9 @@
         <option value="$PROJECT_DIR$/src/Tsk/UserBundle/EventSubscriber/EncoderSubscriber.php" />
         <option value="$PROJECT_DIR$/src/Tsk/UserBundle/Entity/User.php" />
         <option value="$PROJECT_DIR$/src/Tsk/UserBundle/Controller/AdminController.php" />
-        <option value="$PROJECT_DIR$/src/Tsk/UserBundle/Resources/public/js/admin_panel.js" />
-        <option value="$PROJECT_DIR$/src/Tsk/UserBundle/Resources/views/Admin/list.html.twig" />
         <option value="$PROJECT_DIR$/app/config/config.yml" />
+        <option value="$PROJECT_DIR$/src/Tsk/UserBundle/Resources/views/Admin/list.html.twig" />
+        <option value="$PROJECT_DIR$/src/Tsk/UserBundle/Resources/public/js/admin_panel.js" />
       </list>
     </option>
   </component>
@@ -861,22 +861,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Tsk/UserBundle/Resources/public/js/admin_panel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="24" selection-start="597" selection-end="597" vertical-scroll-proportion="0.0" vertical-offset="72" max-vertical-offset="918">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Tsk/UserBundle/Resources/views/Admin/list.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="44" selection-start="212" selection-end="212" vertical-scroll-proportion="-3.4615386" vertical-offset="0" max-vertical-offset="1296">
-          <folding>
-            <element signature="n#style#0;n#td#4;n#tr#1;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/config/config_dev.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="666">
@@ -900,7 +884,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Tsk/UserBundle/Entity/Role.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-1.1781818" vertical-offset="648" max-vertical-offset="1296">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="24.923077" vertical-offset="648" max-vertical-offset="1296">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Tsk/UserBundle/Resources/views/Admin/list.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="188" selection-start="2164" selection-end="2164" vertical-scroll-proportion="-6.230769" vertical-offset="702" max-vertical-offset="1296">
+          <folding>
+            <element signature="n#style#0;n#td#4;n#tr#1;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Tsk/UserBundle/Resources/public/js/admin_panel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="17" selection-start="845" selection-end="845" vertical-scroll-proportion="0.0625" vertical-offset="324" max-vertical-offset="918">
           <folding />
         </state>
       </provider>
